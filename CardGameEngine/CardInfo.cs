@@ -4,6 +4,7 @@ namespace CardServer.CardGameEngine
     {
         Creature,
         Spell,
+        Persistent,
     }
 
     public enum Tribe
@@ -23,4 +24,7 @@ namespace CardServer.CardGameEngine
         public CardType CardType { get; private set; }
         public Tribe Tribe { get; private set; }
     }
+
+    // public List<Trigger> Triggers {get; private set;}
+    // enum Trigger { OnAttack, OnAttacked, OnDraw, OnConjure, ... }
 }

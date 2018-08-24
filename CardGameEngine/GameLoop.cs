@@ -2,7 +2,7 @@ using CardServer.Networking;
 
 namespace CardServer.CardGameEngine
 {
-    enum Player
+    public enum Player
     {
         Player1,
         Player2,
@@ -34,7 +34,11 @@ namespace CardServer.CardGameEngine
 
         private void PlayerTakeTurn(Player player, GameState gameState)
         {
-            // PlayerEvent playerEvent =
+            while (gameState.CurrentPlayerTurn == player)
+            {
+                AEvent playerEvent = WaitForPlayerEvent();
+                EventRunner.RunEvent(playerEvent, gameState);
+            }
         }
 
         private static Player FirstPlayerCoinToss()
@@ -58,6 +62,11 @@ namespace CardServer.CardGameEngine
         }
 
         private Deck LoadDeck(Player player)
+        {
+            return null;
+        }
+
+        private AEvent WaitForPlayerEvent()
         {
             return null;
         }
