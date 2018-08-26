@@ -4,7 +4,12 @@ namespace CardServer.CardGameEngine
     {
         public override void Run(GameState gameState)
         {
-            throw new System.NotImplementedException();
+            gameState.CurrentPlayerTurn = OtherPlayer(gameState.CurrentPlayerTurn);
+        }
+
+        private static Player OtherPlayer(Player player)
+        {
+            return (player == Player.Player1) ? Player.Player2 : Player.Player1;
         }
     }
 }

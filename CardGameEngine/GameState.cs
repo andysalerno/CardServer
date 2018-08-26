@@ -25,7 +25,7 @@ namespace CardServer.CardGameEngine
         public int ManaPlayer1 { get; private set; }
         public int ManaPlayer2 { get; private set; }
 
-        public Player CurrentPlayerTurn { get; private set; }
+        public Player CurrentPlayerTurn { get; set; }
 
         public GameState(Deck player1Deck, Deck player2Deck)
         {
@@ -34,6 +34,26 @@ namespace CardServer.CardGameEngine
 
             this.player1Hand = new Hand();
             this.player2Hand = new Hand();
+        }
+
+        public Deck GetDeck(Player player)
+        {
+            if (player == Player.Player1)
+            {
+                return this.player1Deck;
+            }
+
+            return this.player2Deck;
+        }
+
+        public Hand GetHand(Player player)
+        {
+            if (player == Player.Player1)
+            {
+                return this.player1Hand;
+            }
+
+            return this.player2Hand;
         }
     }
 }
