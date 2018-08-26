@@ -23,6 +23,18 @@ namespace CardServer.CardGameEngine
         public int Range { get; private set; }
         public CardType CardType { get; private set; }
         public Tribe Tribe { get; private set; }
+
+        public CardInfo(CardInfo other)
+        {
+            this.Title = other.Title;
+            this.Cost = other.Cost;
+            this.Text = other.Text;
+            this.Attack = other.Attack;
+            this.Health = other.Health;
+            this.Range = other.Range;
+            this.CardType = other.CardType;
+            this.Tribe = other.Tribe;
+        }
     }
 
     // public List<Trigger> Triggers {get; private set;}

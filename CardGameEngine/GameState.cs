@@ -19,8 +19,8 @@ namespace CardServer.CardGameEngine
 
         // Defines how many slots exist on each board (not really used right now)
         private const int BOARD_SIZE = 7;
-        private List<Id<SummonedCard>> boardPlayer1 = new List<Id<SummonedCard>>();
-        private List<Id<SummonedCard>> boardPlayer2 = new List<Id<SummonedCard>>();
+        private BoardSide boardPlayer1 = new BoardSide(BOARD_SIZE);
+        private BoardSide boardPlayer2 = new BoardSide(BOARD_SIZE);
 
         public int ManaPlayer1 { get; private set; }
         public int ManaPlayer2 { get; private set; }

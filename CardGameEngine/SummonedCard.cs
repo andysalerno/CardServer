@@ -4,13 +4,20 @@ namespace CardServer.CardGameEngine
 {
     public class SummonedCard
     {
-        private CardInfo cardInfo;
-        private int mountId;
+        /// the information on the card at the time it was summoned
+        private Id<CardInfo> cardInfoWhenSummoned;
 
-        public SummonedCard(CardInfo cardInfo, int mountId)
+        /// the information on the card as it exists now (i.e., its health might be lowered via damage)
+        private Id<CardInfo> currentCardInfo;
+        private Id<CardMount> mount;
+
+        public SummonedCard(Id<CardInfo> cardInfo, Id<CardMount> mount)
         {
-            this.cardInfo = cardInfo;
-            this.mountId = mountId;
+            this.cardInfoWhenSummoned = cardInfo ?? throw new System.ArgumentNullException(nameof(cardInfo));
+            this.mount = mount ?? throw new System.ArgumentNullException(nameof(mount));
+
+            var clonedInfo = new CardInfo(cardInfo.Value);
+            this.currentCardInfo = new Id<CardInfo>(clonedInfo);
         }
     }
 }

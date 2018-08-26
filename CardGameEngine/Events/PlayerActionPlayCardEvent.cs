@@ -4,11 +4,24 @@ namespace CardServer.Networking.Events
 {
     public class PlayerActionPlayCardEvent : AEvent
     {
-        public CardInfo CardPlayed { get; private set; }
+        public Id<CardInfo> CardPlayed { get; }
+        public Id<CardMount> CardMount { get; }
+
+        public PlayerActionPlayCardEvent(Id<CardInfo> cardPlayed, Id<CardMount> cardMount)
+        {
+            CardPlayed = cardPlayed ?? throw new System.ArgumentNullException(nameof(cardPlayed));
+            CardMount = cardMount ?? throw new System.ArgumentNullException(nameof(cardMount));
+        }
 
         public override void Run(GameState gameState)
         {
-            throw new System.NotImplementedException();
+            if (gameState == null)
+            {
+                throw new System.ArgumentNullException(nameof(gameState));
+            }
+
+            var summoned = new Id<SummonedCard>(new SummonedCard(this.CardPlayed, this.CardMount));
+            this.CardMount.Value.MountedCard = summoned;
         }
     }
 }
