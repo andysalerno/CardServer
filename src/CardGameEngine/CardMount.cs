@@ -1,5 +1,3 @@
-using CardServer.CardGameEngine;
-
 namespace CardServer.CardGameEngine
 {
     /// An object on the board on which a card can be played.
