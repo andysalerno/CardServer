@@ -11,9 +11,9 @@ namespace CardServer.CardGameEngine
     public class GameLoop
     {
         // game start
-        private IGameServer server;
+        private IGameServer<AEvent> server;
 
-        public GameLoop(IGameServer server) => this.server = server;
+        public GameLoop(IGameServer<AEvent> server) => this.server = server;
 
         public void PlayGame()
         {
@@ -58,7 +58,7 @@ namespace CardServer.CardGameEngine
 
         private static GameState StartingGameState(Deck player1Deck, Deck player2Deck)
         {
-            return null;
+            return new GameState(player1Deck, player2Deck);
         }
 
         private Deck LoadDeck(Player player)

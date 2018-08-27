@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using CardServer.Util;
 
@@ -40,10 +41,14 @@ namespace CardServer.Networking
 
             NetworkStream stream = this.clients.First().GetStream();
 
-            using (var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true))
-            {
-                writer.Write(message);
-            }
+            var formatter = new BinaryFormatter();
+
+            formatter.Serialize(stream, message);
+
+            // using (var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true))
+            // {
+            //     writer.Write(message);
+            // }
 
             Debug.Log("...sent.");
         }
