@@ -6,7 +6,7 @@ using System;
 namespace CardServer.CardGameEngine
 {
     [Serializable()]
-    public abstract class AEvent : ISerializable
+    public abstract class AEvent
     {
         public int SequenceNum { get; private set; }
 

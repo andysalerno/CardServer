@@ -11,9 +11,9 @@ namespace CardServer.CardGameEngine
     public class GameLoop
     {
         // game start
-        private IGameServer<AEvent> server;
+        private IGameServer server;
 
-        public GameLoop(IGameServer<AEvent> server) => this.server = server;
+        public GameLoop(IGameServer server) => this.server = server;
 
         public void PlayGame()
         {
@@ -48,7 +48,7 @@ namespace CardServer.CardGameEngine
 
         private static bool IsGameOver(GameState gameState)
         {
-            return false;
+            return gameState.Player1Health <= 0 || gameState.Player2Health <= 0;
         }
 
         private static Player NextPlayer(Player currentPlayer)

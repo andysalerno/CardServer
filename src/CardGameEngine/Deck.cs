@@ -5,7 +5,7 @@ namespace CardServer.CardGameEngine
 {
     public class Deck
     {
-        public IList<Id<CardInfo>> Cards { get; private set; }
+        public List<Id<CardInfo>> Cards { get; } = new List<Id<CardInfo>>();
         public int Size => Cards.Count;
 
         public Id<CardInfo> DrawFromTop()
@@ -19,6 +19,11 @@ namespace CardServer.CardGameEngine
             }
 
             return null;
+        }
+
+        public void AddCard(Id<CardInfo> card)
+        {
+            this.Cards.Add(card);
         }
     }
 }

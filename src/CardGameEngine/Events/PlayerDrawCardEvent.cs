@@ -4,7 +4,6 @@ using CardServer.CardGameEngine;
 
 namespace CardServer.Networking.Events
 {
-    [Serializable()]
     public class PlayerDrawCardEvent : AEvent
     {
         public Player Player { get; private set; }
@@ -14,10 +13,10 @@ namespace CardServer.Networking.Events
             this.Player = player;
         }
 
-        public PlayerDrawCardEvent()
-        {
-            // for deserialization
-        }
+        // public PlayerDrawCardEvent()
+        // {
+        //     // for deserialization
+        // }
 
         public override void Run(GameState gameState)
         {

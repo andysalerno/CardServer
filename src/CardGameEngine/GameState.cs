@@ -11,8 +11,8 @@ namespace CardServer.CardGameEngine
         private Hand player2Hand;
 
         private const int START_HEALTH = 60;
-        private int player1Health = START_HEALTH;
-        private int player2Health = START_HEALTH;
+        public int Player1Health { get; } = START_HEALTH;
+        public int Player2Health { get; } = START_HEALTH;
 
         private List<Id<CardInfo>> discardPilePlayer1 = new List<Id<CardInfo>>();
         private List<Id<CardInfo>> discardPilePlayer2 = new List<Id<CardInfo>>();

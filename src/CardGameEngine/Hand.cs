@@ -6,10 +6,10 @@ namespace CardServer.CardGameEngine
 {
     public class Hand
     {
-        public Player Player { get; private set; }
-        private List<Id<CardInfo>> cards;
-        public ReadOnlyCollection<Id<CardInfo>> Cards => this.cards.AsReadOnly();
-        public int Size => this.cards.Count;
+        public Player Player { get; }
+        private List<Id<CardInfo>> _Cards { get; } = new List<Id<CardInfo>>();
+        public ReadOnlyCollection<Id<CardInfo>> Cards => this._Cards.AsReadOnly();
+        public int Size => this._Cards.Count;
 
         public void AddCard(Id<CardInfo> card)
         {
@@ -19,7 +19,7 @@ namespace CardServer.CardGameEngine
                 throw new ArgumentNullException(nameof(card));
             }
 
-            this.cards.Add(card);
+            this._Cards.Add(card);
         }
     }
 }

@@ -2,10 +2,12 @@ using System.Runtime.Serialization;
 
 namespace CardServer.Networking
 {
-    public interface IGameServer<T> where T : ISerializable
+    public interface IGameServer
     {
-        void Send(GameMessage<T> message);
+        /// Send a message to a client.
+        void Send(GameMessage message);
 
-        GameMessage<T> Receive();
+        /// Receive the next queued message from a client.
+        GameMessage Receive();
     }
 }

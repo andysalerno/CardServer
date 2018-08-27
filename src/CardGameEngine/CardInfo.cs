@@ -15,14 +15,14 @@ namespace CardServer.CardGameEngine
 
     public class CardInfo
     {
-        public string Title { get; private set; }
-        public int Cost { get; private set; }
-        public string Text { get; private set; }
-        public int Attack { get; private set; }
-        public int Health { get; private set; }
-        public int Range { get; private set; }
-        public CardType CardType { get; private set; }
-        public Tribe Tribe { get; private set; }
+        public string Title { get; }
+        public int Cost { get; }
+        public string Text { get; }
+        public int Attack { get; }
+        public int Health { get; }
+        public int Range { get; }
+        public CardType CardType { get; }
+        public Tribe Tribe { get; }
 
         public CardInfo(CardInfo other)
         {
@@ -35,6 +35,8 @@ namespace CardServer.CardGameEngine
             this.CardType = other.CardType;
             this.Tribe = other.Tribe;
         }
+
+        public CardInfo() { }
     }
 
     // public List<Trigger> Triggers {get; private set;}
