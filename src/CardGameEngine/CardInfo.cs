@@ -36,6 +36,27 @@ namespace CardServer.CardGameEngine
             this.Tribe = other.Tribe;
         }
 
+        public CardInfo(
+            string title,
+            int cost,
+            string text,
+            int attack,
+            int health,
+            int range,
+            CardType cardType,
+            Tribe tribe
+        )
+        {
+            Title = title;
+            Cost = cost;
+            Text = text;
+            Attack = attack;
+            Health = health;
+            Range = range;
+            CardType = cardType;
+            Tribe = tribe;
+        }
+
         public CardInfo() { }
     }
 

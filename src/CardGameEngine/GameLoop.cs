@@ -1,4 +1,6 @@
+using System;
 using CardServer.Networking;
+using CardServer.Networking.Events;
 
 namespace CardServer.CardGameEngine
 {
@@ -11,16 +13,32 @@ namespace CardServer.CardGameEngine
     public class GameLoop
     {
         // game start
-        private IGameServer server;
+        private IEventProvider eventProvider;
 
-        public GameLoop(IGameServer server) => this.server = server;
+        public Deck DeckPlayer1 { get; }
+        public Deck DeckPlayer2 { get; }
+
+        public GameLoop(IEventProvider eventProvider, Deck deckPlayer1, Deck deckPlayer2)
+        {
+            this.eventProvider = eventProvider ?? throw new ArgumentNullException(nameof(eventProvider));
+            DeckPlayer1 = deckPlayer1 ?? throw new System.ArgumentNullException(nameof(deckPlayer1));
+            DeckPlayer2 = deckPlayer2 ?? throw new System.ArgumentNullException(nameof(deckPlayer2));
+        }
 
         public void PlayGame()
         {
-            Deck player1Deck = this.LoadDeck(Player.Player1);
-            Deck player2Deck = this.LoadDeck(Player.Player2);
+            GameState gameState = StartingGameState(this.DeckPlayer1, this.DeckPlayer2);
 
-            GameState gameState = StartingGameState(player1Deck, player2Deck);
+            // at the beginning, each player will draw 5 cards
+            const int FIRST_DRAW_COUNT = 5;
+            for (int i = 0; i < FIRST_DRAW_COUNT; i++)
+            {
+                var drawEventPlayer1 = new PlayerDrawCardEvent(Player.Player1);
+                var drawEventPlayer2 = new PlayerDrawCardEvent(Player.Player2);
+
+                EventRunner.RunEvent(drawEventPlayer1, gameState);
+                EventRunner.RunEvent(drawEventPlayer2, gameState);
+            }
 
             Player playerTurn = FirstPlayerCoinToss();
 
@@ -36,7 +54,7 @@ namespace CardServer.CardGameEngine
         {
             while (gameState.CurrentPlayerTurn == player)
             {
-                AEvent playerEvent = WaitForPlayerEvent();
+                AEvent playerEvent = this.eventProvider.WaitForEvent();
                 EventRunner.RunEvent(playerEvent, gameState);
             }
         }
@@ -48,7 +66,7 @@ namespace CardServer.CardGameEngine
 
         private static bool IsGameOver(GameState gameState)
         {
-            return gameState.Player1Health <= 0 || gameState.Player2Health <= 0;
+            return gameState.GetHealth(Player.Player1) <= 0 || gameState.GetHealth(Player.Player2) <= 0;
         }
 
         private static Player NextPlayer(Player currentPlayer)
@@ -62,11 +80,6 @@ namespace CardServer.CardGameEngine
         }
 
         private Deck LoadDeck(Player player)
-        {
-            return null;
-        }
-
-        private AEvent WaitForPlayerEvent()
         {
             return null;
         }
