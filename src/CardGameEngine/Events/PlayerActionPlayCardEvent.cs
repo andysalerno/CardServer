@@ -6,9 +6,13 @@ namespace CardServer.Networking.Events
     {
         public Id<CardInfo> CardPlayed { get; }
         public Id<CardMount> CardMount { get; }
+        public Player Player { get; }
 
-        public PlayerActionPlayCardEvent(Id<CardInfo> cardPlayed, Id<CardMount> cardMount)
+        public override string Description => $"{this.Player} plays card {this.CardPlayed} on mount {this.CardMount}";
+
+        public PlayerActionPlayCardEvent(Player player, Id<CardInfo> cardPlayed, Id<CardMount> cardMount)
         {
+            Player = player;
             CardPlayed = cardPlayed ?? throw new System.ArgumentNullException(nameof(cardPlayed));
             CardMount = cardMount ?? throw new System.ArgumentNullException(nameof(cardMount));
         }

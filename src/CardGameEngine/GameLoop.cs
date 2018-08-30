@@ -48,11 +48,13 @@ namespace CardServer.CardGameEngine
 
                 playerTurn = NextPlayer(playerTurn);
             }
+
+            EventRunner.RunEvent(new GameOverEvent(), gameState);
         }
 
         private void PlayerTakeTurn(Player player, GameState gameState)
         {
-            while (gameState.CurrentPlayerTurn == player)
+            while (gameState.CurrentPlayerTurn == player && !IsGameOver(gameState))
             {
                 AEvent playerEvent = this.eventProvider.WaitForEvent();
                 EventRunner.RunEvent(playerEvent, gameState);
@@ -66,7 +68,8 @@ namespace CardServer.CardGameEngine
 
         private static bool IsGameOver(GameState gameState)
         {
-            return gameState.GetHealth(Player.Player1) <= 0 || gameState.GetHealth(Player.Player2) <= 0;
+            return gameState.GetHealth(Player.Player1) <= 0 || gameState.GetHealth(Player.Player2) <= 0
+                || gameState.ForfeitPlayer1 || gameState.ForfeitPlayer2;
         }
 
         private static Player NextPlayer(Player currentPlayer)

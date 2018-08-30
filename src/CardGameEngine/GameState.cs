@@ -24,6 +24,8 @@ namespace CardServer.CardGameEngine
 
         public int ManaPlayer1 { get; private set; }
         public int ManaPlayer2 { get; private set; }
+        public bool ForfeitPlayer1 { get; set; }
+        public bool ForfeitPlayer2 { get; set; }
 
         public Player CurrentPlayerTurn { get; set; }
 

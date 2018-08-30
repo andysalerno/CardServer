@@ -11,6 +11,9 @@ namespace CardServer.CardGameEngine
         public int SequenceNum { get; private set; }
 
         public abstract void Run(GameState gameState);
+
+        public abstract string Description { get; }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             var allProperties = this.GetType().GetProperties();

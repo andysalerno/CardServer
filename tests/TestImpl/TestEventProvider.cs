@@ -6,7 +6,7 @@ namespace CardServer.Tests
 {
     internal class TestEventProvider : IEventProvider
     {
-        private IEnumerable<AEvent> eventQueue;
+        public IEnumerable<AEvent> EventQueue { get; }
         private IEnumerator<AEvent> enumerator;
 
         public AEvent WaitForEvent()
@@ -21,8 +21,8 @@ namespace CardServer.Tests
 
         public TestEventProvider(IEnumerable<AEvent> eventQueue)
         {
-            this.eventQueue = eventQueue ?? throw new System.ArgumentNullException(nameof(eventQueue));
-            this.enumerator = eventQueue.GetEnumerator();
+            this.EventQueue = eventQueue ?? throw new System.ArgumentNullException(nameof(eventQueue));
+            this.enumerator = this.EventQueue.GetEnumerator();
         }
 
         public TestEventProvider() { }

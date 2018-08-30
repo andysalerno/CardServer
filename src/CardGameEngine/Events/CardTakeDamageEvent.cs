@@ -4,6 +4,7 @@ namespace CardServer.CardGameEngine
     {
         private Id<SummonedCard> Target { get; set; }
         private Id<SummonedCard> Source { get; set; }
+        public override string Description => $"Card {Target} takes damage from {Source}";
 
         public CardTakeDamageEvent(Id<SummonedCard> target, Id<SummonedCard> source)
         {

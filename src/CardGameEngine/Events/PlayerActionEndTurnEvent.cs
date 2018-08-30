@@ -2,6 +2,7 @@ namespace CardServer.CardGameEngine
 {
     public class PlayerActionEndTurnEvent : AEvent
     {
+        public override string Description => "Player ends turn.";
         public override void Run(GameState gameState)
         {
             gameState.CurrentPlayerTurn = OtherPlayer(gameState.CurrentPlayerTurn);

@@ -8,6 +8,8 @@ namespace CardServer.Networking.Events
     {
         public Player Player { get; private set; }
 
+        public override string Description => $"{this.Player} draws a card";
+
         public PlayerDrawCardEvent(Player player)
         {
             this.Player = player;
