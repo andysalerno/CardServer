@@ -1,7 +1,7 @@
 
 using CardServer.CardGameEngine;
 
-namespace CardServer.Networking.Events
+namespace CardServer.CardGameEngine
 {
     public class GameOverEvent : AEvent
     {

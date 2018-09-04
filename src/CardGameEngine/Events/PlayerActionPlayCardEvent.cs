@@ -1,6 +1,6 @@
 using CardServer.CardGameEngine;
 
-namespace CardServer.Networking.Events
+namespace CardServer.CardGameEngine.Events
 {
     public class PlayerActionPlayCardEvent : AEvent
     {

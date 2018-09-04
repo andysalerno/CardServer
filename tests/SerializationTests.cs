@@ -1,6 +1,6 @@
 using CardServer.CardGameEngine;
+using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
-using CardServer.Networking.Events;
 using Xunit;
 
 namespace CardServer.Tests

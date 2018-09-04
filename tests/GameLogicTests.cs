@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CardServer.CardGameEngine;
-using CardServer.Networking.Events;
+using CardServer.CardGameEngine.Events;
 using CardServer.Tests.Helpers;
 using Xunit;
 

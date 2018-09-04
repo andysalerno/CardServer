@@ -1,4 +1,4 @@
-namespace CardServer.CardGameEngine
+namespace CardServer.CardGameEngine.Events
 {
     public class PlayerActionEndTurnEvent : AEvent
     {

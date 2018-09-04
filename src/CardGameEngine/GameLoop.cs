@@ -1,6 +1,6 @@
 using System;
+using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
-using CardServer.Networking.Events;
 
 namespace CardServer.CardGameEngine
 {
@@ -29,16 +29,8 @@ namespace CardServer.CardGameEngine
         {
             GameState gameState = StartingGameState(this.DeckPlayer1, this.DeckPlayer2);
 
-            // at the beginning, each player will draw 5 cards
-            const int FIRST_DRAW_COUNT = 5;
-            for (int i = 0; i < FIRST_DRAW_COUNT; i++)
-            {
-                var drawEventPlayer1 = new PlayerDrawCardEvent(Player.Player1);
-                var drawEventPlayer2 = new PlayerDrawCardEvent(Player.Player2);
-
-                EventRunner.RunEvent(drawEventPlayer1, gameState);
-                EventRunner.RunEvent(drawEventPlayer2, gameState);
-            }
+            const int START_HAND_SIZE = 5;
+            EventRunner.RunEvent(new GameStartCardDrawEvent(START_HAND_SIZE), gameState);
 
             Player playerTurn = FirstPlayerCoinToss();
 

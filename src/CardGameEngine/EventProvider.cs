@@ -1,6 +1,6 @@
 using System;
+using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
-using CardServer.Networking.Events;
 
 namespace CardServer.CardGameEngine
 {
@@ -26,9 +26,13 @@ namespace CardServer.CardGameEngine
             {
                 return Util.Json.Deserialize<PlayerDrawCardEvent>(gameMessage.SerializedJson);
             }
-            else if (gameMessage.ContentType == typeof(CardTakeDamageEvent))
+            else if (gameMessage.ContentType == typeof(CardAttackDealDamageEvent))
             {
-                return Util.Json.Deserialize<CardTakeDamageEvent>(gameMessage.SerializedJson);
+                return Util.Json.Deserialize<CardAttackDealDamageEvent>(gameMessage.SerializedJson);
+            }
+            else if (gameMessage.ContentType == typeof(CardAttackTakeDamageEvent))
+            {
+                return Util.Json.Deserialize<CardAttackTakeDamageEvent>(gameMessage.SerializedJson);
             }
             else if (gameMessage.ContentType == typeof(PlayerActionAttackEvent))
             {

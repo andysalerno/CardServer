@@ -2,7 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using CardServer.CardGameEngine;
 
-namespace CardServer.Networking.Events
+namespace CardServer.CardGameEngine.Events
 {
     public class PlayerDrawCardEvent : AEvent
     {

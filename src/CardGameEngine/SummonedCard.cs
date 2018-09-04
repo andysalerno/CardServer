@@ -11,6 +11,8 @@ namespace CardServer.CardGameEngine
         private Id<CardInfo> currentCardInfo;
         private Id<CardMount> mount;
 
+        public bool IsAlive => this.currentCardInfo.Value.Health > 0;
+
         public SummonedCard(Id<CardInfo> cardInfo, Id<CardMount> mount)
         {
             this.cardInfoWhenSummoned = cardInfo ?? throw new System.ArgumentNullException(nameof(cardInfo));
