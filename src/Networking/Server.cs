@@ -64,14 +64,17 @@ namespace CardServer.Networking
 
             var formatter = new BinaryFormatter();
 
-            formatter.Serialize(stream, message);
-
-            // using (var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true))
-            // {
-            //     writer.Write(message);
-            // }
+            using (var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true))
+            {
+                writer.Write(message);
+            }
 
             Debug.Log("...sent.");
+        }
+
+        public void Flush()
+        {
+            this.clients.First().GetStream().Flush();
         }
     }
 }

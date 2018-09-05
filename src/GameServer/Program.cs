@@ -13,28 +13,25 @@ namespace GameServer
             var server = new Server();
             server.AcceptClient();
 
-            Debug.Log("Waiting for opening handshake...");
-            Thread.Sleep(5000);
-            string message = server.ReceiveFromClient();
-            Debug.Log($"Received: {message}");
-            if (message != "Hello!")
-            {
-                Debug.Log("Handshake protocol violated! Quitting.");
-                Console.ReadKey();
-                return;
-            }
+            Handshake(server);
 
-            string nextMessage = server.ReceiveFromClient();
-            Debug.Log($"Received: {nextMessage}");
-            if (nextMessage != "World!")
-            {
-                Debug.Log("Handshake protocol violated! Quitting.");
-                Console.ReadKey();
-                return;
-            }
-
-            Debug.Log("All happy! Press any key to quit.");
             Console.ReadKey();
+
+            CloseConnection(server);
+        }
+
+        private static void Handshake(Server server)
+        {
+            server.ExpectFromClient("Hello!");
+            server.ExpectFromClient("World!");
+            server.SendToClient("Hello right back at you!");
+            Debug.Log("Handshake complete.");
+        }
+
+        private static void CloseConnection(Server server)
+        {
+            server.SendToClient("Closing connection");
+            server.Flush();
         }
     }
 }

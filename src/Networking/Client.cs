@@ -19,7 +19,7 @@ namespace CardServer.Networking
             Debug.Log("...client connected.");
         }
 
-        public void ReceiveFromServer()
+        public string ReceiveFromServer()
         {
             Debug.Log("Receiving from server...");
             NetworkStream stream = this.client.GetStream();
@@ -32,6 +32,8 @@ namespace CardServer.Networking
 
             Debug.Log("Received this:");
             Debug.Log($"\t{read}");
+
+            return read;
         }
 
         public void SendToServer(string message)
