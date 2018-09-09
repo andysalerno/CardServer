@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Util\Util.csproj" />
     <ProjectReference Include="..\Networking\Networking.csproj" />
+    <ProjectReference Include="..\CardGameEngine\CardGameEngine.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Networking\Networking.csproj" />
+    <ProjectReference Include="..\CardGameEngine\CardGameEngine.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

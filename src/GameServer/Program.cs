@@ -1,37 +1,43 @@
 ﻿using System;
 using System.Threading;
+using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
 using CardServer.Util;
 
-namespace GameServer
+namespace CardGameServer
 {
     class Program
     {
         private const int PORT = 7777;
         static void Main(string[] args)
         {
-            var server = new Server();
-            server.AcceptClient();
+            var server = new GameServer();
 
             Handshake(server);
 
             Console.ReadKey();
-
-            CloseConnection(server);
         }
 
-        private static void Handshake(Server server)
+        private static void Handshake(GameServer server)
         {
-            server.ExpectFromClient("Hello!");
-            server.ExpectFromClient("World!");
-            server.SendToClient("Hello right back at you!");
-            Debug.Log("Handshake complete.");
-        }
+            string guid = Guid.NewGuid().ToString();
+            var handshake = new HandshakeEvent(guid);
 
-        private static void CloseConnection(Server server)
-        {
-            server.SendToClient("Closing connection");
-            server.Flush();
+            server.Send(new GameMessage(handshake));
+
+            GameMessage received = server.Receive();
+            if (received.ContentType != typeof(HandshakeEvent))
+            {
+                throw new Exception("server expected handshake.");
+            }
+
+            HandshakeEvent internalEvent = received.DeserializeContent<HandshakeEvent>();
+            if (internalEvent.HandshakeMessage != guid)
+            {
+                throw new Exception($"The client did not respond with the expected handshake message. Expected: {guid}\nSaw: {internalEvent.HandshakeMessage}");
+            }
+
+            Debug.Log("Handshake succeeded.");
         }
     }
 }

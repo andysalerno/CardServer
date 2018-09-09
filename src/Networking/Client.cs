@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -6,7 +7,7 @@ using CardServer.Util;
 namespace CardServer.Networking
 {
     /// A dummy client for testing purposes
-    public class Client
+    internal class Client
     {
         private TcpClient client;
         private const string HOSTNAME = "localhost";
@@ -34,6 +35,20 @@ namespace CardServer.Networking
             Debug.Log($"\t{read}");
 
             return read;
+        }
+
+        public T ReceiveFromServer<T>()
+        {
+            string received = this.ReceiveFromServer();
+
+            T obj = CardServer.Util.Json.Deserialize<T>(received);
+
+            if (obj == null)
+            {
+                throw new Exception($"Unable to generate object of type {typeof(T)} from json {received}");
+            }
+
+            return obj;
         }
 
         public void SendToServer(string message)

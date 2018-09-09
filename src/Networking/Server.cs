@@ -10,7 +10,7 @@ using CardServer.Util;
 
 namespace CardServer.Networking
 {
-    public class Server
+    internal class Server
     {
         private TcpListener listener;
         private const int PORT = 7777;

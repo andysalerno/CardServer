@@ -1,4 +1,5 @@
 ﻿using System;
+using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
 using CardServer.Util;
 
@@ -8,32 +9,33 @@ namespace TestClient
     {
         public static void Main(string[] args)
         {
-            var client = new Client();
+            var client = new GameClient();
 
             Handshake(client);
+
+            Debug.Log("Handshake complete.");
+
+            while (true)
+            {
+                GameMessage received = client.Receive();
+            }
 
             Console.ReadKey();
         }
 
-        private static string ReceiveFromServer(Client client)
+        private static void Handshake(GameClient client)
         {
-            string message = client.ReceiveFromServer();
-
-            if (message == "Closing connection")
+            GameMessage hello = client.Receive();
+            if (hello.ContentType != typeof(HandshakeEvent))
             {
-                Environment.Exit(0);
+                throw new Exception("client expected handshake");
             }
 
-            return message;
-        }
+            HandshakeEvent handshake = hello.DeserializeContent<HandshakeEvent>();
+            string handshakeMessage = handshake.HandshakeMessage;
 
-        private static void Handshake(Client client)
-        {
-            client.SendToServer("Hello!");
-            client.SendToServer("World!");
-            client.ExpectFromServer("Hello right back at you!");
-
-            Debug.Log("Handshake complete.");
+            // send it back to server to ack
+            client.Send(new GameMessage(new HandshakeEvent(handshakeMessage)));
         }
     }
 }
