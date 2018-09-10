@@ -4,11 +4,11 @@ using CardServer.Networking;
 
 namespace CardServer.CardGameEngine
 {
-    public class EventProvider : IEventProvider
+    public class NetworkEventProvider : IEventProvider
     {
         private IGameServer Server { get; }
 
-        public EventProvider(IGameServer server)
+        public NetworkEventProvider(IGameServer server)
         {
             Server = server ?? throw new System.ArgumentNullException(nameof(server));
         }

@@ -1,12 +1,15 @@
 using System;
 using System.Runtime.Serialization;
 using CardServer.CardGameEngine;
+using CardServer.Networking;
 
 namespace CardServer.CardGameEngine.Events
 {
     public class PlayerDrawCardEvent : AEvent
     {
-        public Player Player { get; private set; }
+        public Player Player { get; }
+
+        public Id<CardInfo> CardDrawn { get; private set; }
 
         public override string Description => $"{this.Player} draws a card";
 
@@ -15,18 +18,16 @@ namespace CardServer.CardGameEngine.Events
             this.Player = player;
         }
 
-        // public PlayerDrawCardEvent()
-        // {
-        //     // for deserialization
-        // }
-
         public override void Run(GameState gameState)
         {
             Deck deck = gameState.GetDeck(this.Player);
             Id<CardInfo> card = deck.DrawFromTop();
+            this.CardDrawn = card;
 
             Hand hand = gameState.GetHand(this.Player);
             hand.AddCard(card);
+
+            UIChannel.Provider.SendToUI(new GameMessage(this));
         }
     }
 }

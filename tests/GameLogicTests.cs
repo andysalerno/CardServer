@@ -9,6 +9,12 @@ namespace CardServer.Tests
 {
     public class GameLogicTests
     {
+
+        public GameLogicTests()
+        {
+            UIChannel.RegisterIUIChannelProvider(new TestUIChannelProvider());
+        }
+
         [Fact]
         public void DrawCard()
         {
