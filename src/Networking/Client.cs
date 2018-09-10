@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using CardServer.Util;
 
 namespace CardServer.Networking
@@ -16,8 +17,29 @@ namespace CardServer.Networking
         public Client()
         {
             Debug.Log("Client starting...");
-            this.client = new TcpClient(HOSTNAME, PORT);
+            this.AttemptConnection();
             Debug.Log("...client connected.");
+        }
+
+        private void AttemptConnection()
+        {
+            int attemptsRemaining = 10;
+            const int RetryDelayMs = 5000;
+
+            while (attemptsRemaining > 0)
+            {
+                try
+                {
+                    this.client = new TcpClient(HOSTNAME, PORT);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    attemptsRemaining--;
+                    Debug.Log($"Client failed to connect to server, {attemptsRemaining} attempts remaining");
+                    Thread.Sleep(RetryDelayMs);
+                }
+            }
         }
 
         public string ReceiveFromServer()

@@ -7,6 +7,7 @@ namespace CardServer.Networking
         public GameServer()
         {
             this.server = new Server();
+            this.server.AcceptClient();
         }
 
         public GameMessage Receive()

@@ -13,8 +13,6 @@ namespace TestClient
 
             Handshake(client);
 
-            Debug.Log("Handshake complete.");
-
             while (true)
             {
                 GameMessage received = client.Receive();
@@ -36,6 +34,7 @@ namespace TestClient
 
             // send it back to server to ack
             client.Send(new GameMessage(new HandshakeEvent(handshakeMessage)));
+            Debug.Log("Handshake complete.");
         }
     }
 }
