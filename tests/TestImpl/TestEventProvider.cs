@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CardServer.CardGameEngine.Events;
 using CardServer.CardGameEngine;
 using CardServer.Networking;
 

@@ -2,6 +2,7 @@
 using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
 using CardServer.Util;
+using CardServer.CardGameEngine.Helpers;
 
 namespace TestClient
 {
@@ -16,9 +17,18 @@ namespace TestClient
             while (true)
             {
                 GameMessage received = client.Receive();
-            }
 
-            Console.ReadKey();
+                if (received.ContentType == typeof(ServerCloseSessionEvent))
+                {
+                    Debug.Log("The server has ended the session.");
+                    return;
+                }
+                else
+                {
+                    AEvent _event = received.ToEvent();
+                    Debug.Log(_event.Description);
+                }
+            }
         }
 
         private static void Handshake(GameClient client)

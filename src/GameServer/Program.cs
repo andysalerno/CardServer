@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using CardServer.CardGameEngine;
 using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
 using CardServer.Util;
@@ -12,6 +13,8 @@ namespace CardGameServer
         static void Main(string[] args)
         {
             var server = new GameServer();
+
+            EventRunner.RegisterGameServer(server);
 
             Handshake(server);
 

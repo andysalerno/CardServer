@@ -26,8 +26,6 @@ namespace CardServer.CardGameEngine.Events
 
             Hand hand = gameState.GetHand(this.Player);
             hand.AddCard(card);
-
-            UIChannel.Provider.SendToUI(new GameMessage(this));
         }
     }
 }

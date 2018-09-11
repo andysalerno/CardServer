@@ -12,7 +12,7 @@ namespace CardServer.Tests
 
         public GameLogicTests()
         {
-            UIChannel.RegisterIUIChannelProvider(new TestUIChannelProvider());
+            EventRunner.RegisterGameServer(new TestServer());
         }
 
         [Fact]
