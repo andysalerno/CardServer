@@ -33,7 +33,7 @@ namespace CardServer.Networking
                     this.client = new TcpClient(HOSTNAME, PORT);
                     return;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     attemptsRemaining--;
                     Debug.Log($"Client failed to connect to server, {attemptsRemaining} attempts remaining");
@@ -43,6 +43,18 @@ namespace CardServer.Networking
         }
 
         public string ReceiveFromServer()
+        {
+            NetworkStream stream = this.client.GetStream();
+
+            if (!stream.DataAvailable)
+            {
+                return null;
+            }
+
+            return this.WaitUntilReceiveFromServer();
+        }
+
+        public string WaitUntilReceiveFromServer()
         {
             Debug.Log("Receiving from server...");
             NetworkStream stream = this.client.GetStream();
@@ -57,20 +69,6 @@ namespace CardServer.Networking
             Debug.Log($"\t{read}");
 
             return read;
-        }
-
-        public T ReceiveFromServer<T>()
-        {
-            string received = this.ReceiveFromServer();
-
-            T obj = CardServer.Util.Json.Deserialize<T>(received);
-
-            if (obj == null)
-            {
-                throw new Exception($"Unable to generate object of type {typeof(T)} from json {received}");
-            }
-
-            return obj;
         }
 
         public void SendToServer(string message)

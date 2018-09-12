@@ -47,7 +47,7 @@ namespace CardServer.CardGameEngine
                 return Util.Json.Deserialize<PlayerActionPlayCardEvent>(gameMessage.SerializedJson);
             }
 
-            throw new Exception("Could not transform the game message into an event.");
+            throw new Exception($"Could not transform the game message with ContentType {gameMessage.ContentType.Name} into an event.");
         }
     }
 }

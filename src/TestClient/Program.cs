@@ -16,7 +16,7 @@ namespace TestClient
 
             while (true)
             {
-                GameMessage received = client.Receive();
+                GameMessage received = client.WaitReceive();
 
                 if (received.ContentType == typeof(ServerCloseSessionEvent))
                 {
@@ -33,7 +33,8 @@ namespace TestClient
 
         private static void Handshake(GameClient client)
         {
-            GameMessage hello = client.Receive();
+            GameMessage hello = client.WaitReceive();
+
             if (hello.ContentType != typeof(HandshakeEvent))
             {
                 throw new Exception("client expected handshake");
