@@ -1,12 +1,15 @@
 namespace CardServer.Networking
 {
-    public class GameServer : IGameServer
+    /// <summary>
+    /// A <see cref="IGameServer"/> implementor using TCP networking under the hood.
+    /// </summary>
+    public class NetworkGameServer : IGameServer
     {
-        private Server server;
+        private NetworkServer server;
 
-        public GameServer()
+        public NetworkGameServer()
         {
-            this.server = new Server();
+            this.server = new NetworkServer();
             this.server.AcceptClient();
         }
 

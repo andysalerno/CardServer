@@ -1,6 +1,6 @@
-using System;
 using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
+using System;
 
 namespace CardServer.CardGameEngine
 {

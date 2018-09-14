@@ -1,11 +1,17 @@
-using System;
-using System.Collections.Generic;
+using CardServer.CardGameEngine.Events;
 using CardServer.Networking;
 using CardServer.Util;
-using CardServer.CardGameEngine.Events;
+using System;
 
 namespace CardServer.CardGameEngine
 {
+    /// <summary>
+    /// Acts as a service for executing <see cref="AEvent"/>s.
+    /// 
+    /// A <see cref="IGameServer"/> must be registered ahead of time.
+    /// 
+    /// Once registered, <see cref="EventRunner"/> will notify the server every time an event is run.
+    /// </summary>
     public class EventRunner
     {
         // private Stack<AEvent> eventStack = new Stack<AEvent>();

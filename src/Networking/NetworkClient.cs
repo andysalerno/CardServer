@@ -1,20 +1,22 @@
+using CardServer.Util;
 using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using CardServer.Util;
 
 namespace CardServer.Networking
 {
-    /// A dummy client for testing purposes
-    internal class Client
+    /// <summary>
+    /// A simple TCP network client for sending/receiving messages with a <see cref="NetworkGameServer"/>.
+    /// </summary>
+    internal class NetworkClient
     {
         private TcpClient client;
         private const string HOSTNAME = "localhost";
         private const int PORT = 7777;
 
-        public Client()
+        public NetworkClient()
         {
             Debug.Log("Client starting...");
             this.AttemptConnection();

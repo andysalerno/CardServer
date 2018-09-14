@@ -1,6 +1,5 @@
-using System;
 using CardServer.CardGameEngine.Events;
-using CardServer.Networking;
+using System;
 
 namespace CardServer.CardGameEngine
 {
@@ -10,9 +9,15 @@ namespace CardServer.CardGameEngine
         Player2,
     }
 
+    /// <summary>
+    /// The central game-running logic.
+    /// Create a <see cref="GameLoop"/> by passing it an event provider and two decks.
+    /// 
+    /// From there, you can invoke <see cref="PlayGame"/> and this class will
+    /// begin requesting actions from each player in turn, running them with the <see cref="EventRunner"/>.
+    /// </summary>
     public class GameLoop
     {
-        // game start
         private IEventProvider eventProvider;
 
         public Deck DeckPlayer1 { get; }

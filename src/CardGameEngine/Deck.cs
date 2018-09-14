@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,25 +6,34 @@ namespace CardServer.CardGameEngine
 {
     public class Deck
     {
-        public List<Id<CardInfo>> Cards { get; } = new List<Id<CardInfo>>();
+        private List<Id<CardInfo>> cards = new List<Id<CardInfo>>();
+
+        public IReadOnlyCollection<Id<CardInfo>> Cards => this.cards;
+
+        public bool Any => this.cards.Any();
+
         public int Size => Cards.Count;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Id<CardInfo> DrawFromTop()
         {
-            if (this.Cards.Any())
+            if (this.cards.Any())
             {
-                Id<CardInfo> card = this.Cards[0];
-                this.Cards.RemoveAt(0);
+                Id<CardInfo> card = this.cards[0];
+                this.cards.RemoveAt(0);
 
                 return card;
             }
 
-            return null;
+            throw new Exception("Cannot draw from an empty deck.");
         }
 
         public void AddCard(Id<CardInfo> card)
         {
-            this.Cards.Add(card);
+            this.cards.Add(card);
         }
     }
 }

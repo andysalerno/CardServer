@@ -1,8 +1,8 @@
-﻿using System;
-using CardServer.CardGameEngine.Events;
+﻿using CardServer.CardGameEngine.Events;
+using CardServer.CardGameEngine.Helpers;
 using CardServer.Networking;
 using CardServer.Util;
-using CardServer.CardGameEngine.Helpers;
+using System;
 
 namespace TestClient
 {
@@ -10,7 +10,7 @@ namespace TestClient
     {
         public static void Main(string[] args)
         {
-            var client = new GameClient();
+            var client = new NetworkGameClient();
 
             Handshake(client);
 
@@ -31,7 +31,7 @@ namespace TestClient
             }
         }
 
-        private static void Handshake(GameClient client)
+        private static void Handshake(NetworkGameClient client)
         {
             GameMessage hello = client.WaitReceive();
 

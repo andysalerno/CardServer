@@ -1,3 +1,4 @@
+using CardServer.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,11 +7,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using CardServer.Util;
 
 namespace CardServer.Networking
 {
-    internal class Server
+    /// <summary>
+    /// A TCP-based network server for communicating to clients
+    /// with raw string messages.
+    /// </summary>
+    internal class NetworkServer
     {
         private TcpListener listener;
         private const int PORT = 7777;
@@ -18,7 +22,7 @@ namespace CardServer.Networking
 
         private List<TcpClient> clients = new List<TcpClient>();
 
-        public Server()
+        public NetworkServer()
         {
             this.listener = new TcpListener(LocalAddress, PORT);
 

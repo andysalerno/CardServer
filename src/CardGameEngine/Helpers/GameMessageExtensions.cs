@@ -1,5 +1,5 @@
-using CardServer.Networking;
 using CardServer.CardGameEngine.Events;
+using CardServer.Networking;
 using System;
 
 namespace CardServer.CardGameEngine.Helpers
@@ -32,8 +32,12 @@ namespace CardServer.CardGameEngine.Helpers
             {
                 return Util.Json.Deserialize<PlayerActionPlayCardEvent>(gameMessage.SerializedJson);
             }
+            else if (gameMessage.ContentType == typeof(GameStartCardDrawEvent))
+            {
+                return Util.Json.Deserialize<GameStartCardDrawEvent>(gameMessage.SerializedJson);
+            }
 
-            throw new Exception("Could not transform the game message into an event.");
+            throw new Exception($"Could not transform the game message of type {gameMessage.ContentType.Name} into an event.");
         }
     }
 }

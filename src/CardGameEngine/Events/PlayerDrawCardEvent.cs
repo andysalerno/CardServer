@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using CardServer.CardGameEngine;
 using CardServer.Networking;
+using CardServer.Util;
 
 namespace CardServer.CardGameEngine.Events
 {
@@ -26,6 +27,8 @@ namespace CardServer.CardGameEngine.Events
 
             Hand hand = gameState.GetHand(this.Player);
             hand.AddCard(card);
+
+            Debug.Log($"Player {this.Player} draw card: {card.Value.Title}");
         }
     }
 }
