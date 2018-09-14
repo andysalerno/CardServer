@@ -1,7 +1,3 @@
-using System;
-using System.Runtime.Serialization;
-using CardServer.CardGameEngine;
-using CardServer.Networking;
 using CardServer.Util;
 
 namespace CardServer.CardGameEngine.Events
