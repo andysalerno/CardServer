@@ -5,17 +5,17 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{928B5870-5254-4D02-AA67-7FFFB8276414}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGameEngine", "src\CardGameEngine\CardGameEngine.csproj", "{70CA1BF7-F1E9-443B-93DA-8C5E9594292F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGameEngine", "src\CardGameEngine\CardGameEngine.csproj", "{70CA1BF7-F1E9-443B-93DA-8C5E9594292F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Networking", "src\Networking\Networking.csproj", "{7561C89D-A9EE-4D46-93C9-BD18FE0AE74A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Networking", "src\Networking\Networking.csproj", "{7561C89D-A9EE-4D46-93C9-BD18FE0AE74A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "src\Util\Util.csproj", "{CCBA23D3-B9EE-47C5-8B29-156028EB2AC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Util", "src\Util\Util.csproj", "{CCBA23D3-B9EE-47C5-8B29-156028EB2AC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{66231AA9-ED95-4D31-93FF-94454FD7739D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "tests\tests.csproj", "{66231AA9-ED95-4D31-93FF-94454FD7739D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClient", "src\TestClient\TestClient.csproj", "{E9EB8F82-97DF-4EEB-8EC9-8C9275299918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestClient", "src\TestClient\TestClient.csproj", "{E9EB8F82-97DF-4EEB-8EC9-8C9275299918}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "src\GameServer\GameServer.csproj", "{A85CA305-7F89-4B25-A60B-7472662E54C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameServer", "src\GameServer\GameServer.csproj", "{A85CA305-7F89-4B25-A60B-7472662E54C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

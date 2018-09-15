@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace CardServer.Networking
@@ -65,8 +64,6 @@ namespace CardServer.Networking
             Debug.Log("Sending message to client...");
 
             NetworkStream stream = this.clients.First().GetStream();
-
-            var formatter = new BinaryFormatter();
 
             using (var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true))
             {
