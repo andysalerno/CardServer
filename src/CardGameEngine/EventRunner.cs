@@ -55,6 +55,11 @@ namespace CardServer.CardGameEngine
             Debug.Log($"Event executing: {_event.GetType().Name}");
             Debug.Log($"\t{_event.Description}");
 
+            // Dilemma:
+            // we want to call "send" first, so if Run() generates new messages, we send them in the order they are run (like a queue)
+            // if we call "send" after, it will be LIFO instead.
+            // But if we call Run() after, the event doesn't have the chance to populate its necessary fields before it is sent.
+            // I.e. CardDrawEvent won't get the chance to populate the field representing the card that was drawn...
             EventRunner.GameServer.Send(new GameMessage(_event));
             _event.Run(gameState);
         }

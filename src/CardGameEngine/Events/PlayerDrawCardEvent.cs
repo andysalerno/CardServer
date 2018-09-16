@@ -6,7 +6,7 @@ namespace CardServer.CardGameEngine.Events
     {
         public Player Player { get; }
 
-        public Id<CardInfo> CardDrawn { get; private set; }
+        public Id<CardInfo> CardDrawn { get; set; }
 
         public override string Description => $"{this.Player} draws a card";
 

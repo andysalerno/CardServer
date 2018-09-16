@@ -1,3 +1,5 @@
+using System;
+
 namespace CardServer.CardGameEngine
 {
     public enum CardType
@@ -13,16 +15,17 @@ namespace CardServer.CardGameEngine
         Normal,
     }
 
+    [Serializable()]
     public class CardInfo
     {
-        public string Title { get; }
-        public int Cost { get; }
-        public string Text { get; }
-        public int Attack { get; }
-        public int Health { get; }
-        public int Range { get; }
-        public CardType CardType { get; }
-        public Tribe Tribe { get; }
+        public string Title { get; set; }
+        public int Cost { get; set; }
+        public string Text { get; set; }
+        public int Attack { get; set; }
+        public int Health { get; set; }
+        public int Range { get; set; }
+        public CardType CardType { get; set; }
+        public Tribe Tribe { get; set; }
 
         public CardInfo(CardInfo other)
         {

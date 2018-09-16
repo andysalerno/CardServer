@@ -7,11 +7,12 @@ namespace CardServer.CardGameEngine
     /// (i.e. card metadata like CardInfo class) but you want to use the same representation
     /// to denote a specific, unique "card" as it exists in a deck.
     /// Using this class, callers can specify that they require a unique version.
+    [Serializable()]
     public class Id<T>
     {
-        public Guid Guid { get; private set; }
+        public Guid Guid { get; set; }
 
-        public T Value { get; private set; }
+        public T Value { get; set; }
 
         public Id(T value)
         {
@@ -24,5 +25,7 @@ namespace CardServer.CardGameEngine
             this.Value = value;
             this.Guid = guid;
         }
+
+        public Id() { }
     }
 }
